@@ -5,8 +5,8 @@ from Streamlit_backend import Reception, Doctor, Nurse
 st.set_page_config(page_title="MRT Hospital System", layout="centered")
 
 st.header("MRT Hospital Management System", divider="blue")
-st.subheader(
-    "Address: No. 1 Ibrahim Hospital Road, Along Omogiafo Estate, Ibienafe, Auchi, Edo State.")
+# st.subheader(
+#     "Address: No. 1 Ibrahim Hospital Road, Along Omogiafo Estate, Ibienafe, Auchi, Edo State.")
 
 st.sidebar.title("Navigation")
 with st.sidebar:
