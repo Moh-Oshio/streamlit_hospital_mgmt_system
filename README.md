@@ -1,6 +1,6 @@
 # MRT Hospital Management System
 
-Link to app: [[Your App Link](https://hospital-mgmt.streamlit.app)]
+Link to app: [[App Link](https://hospital-mgmt.streamlit.app)]
 
 This is a hospital management system I built using Python and Streamlit. It handles patient registration, vital signs, doctor reports, and nursing notes.
 
