@@ -6,6 +6,14 @@ from datetime import datetime
 card_nums = []
 
 
+class AdminAuthentication:
+    def __init__(self):
+        self.hash_file = "admin_hash.txt"
+
+    def first_time(self):
+        return not os.path.exists(self.hash_file)
+
+
 class HospitalStaff:
     def __init__(self):
         self.folder = "patients"
