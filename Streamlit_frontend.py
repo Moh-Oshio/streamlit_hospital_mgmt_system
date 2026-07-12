@@ -4,13 +4,11 @@ from Streamlit_backend import Reception, Doctor, Nurse
 
 st.set_page_config(page_title="MRT Hospital System", layout="centered")
 
-# --- 1. LOGIN SETUP ---
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 
 
 def login(username, password):
-    # Hardcoded for portfolio purposes
     if username == "admin" and password == "password123":
         st.session_state['logged_in'] = True
         st.rerun()
@@ -23,7 +21,6 @@ def logout():
     st.rerun()
 
 
-# --- 2. SHOW LOGIN OR APP ---
 if not st.session_state['logged_in']:
     st.header("MRT Hospital System", divider="blue")
     st.subheader("Staff Login")
@@ -36,12 +33,10 @@ if not st.session_state['logged_in']:
             login(user, pw)
 
 else:
-    # --- YOUR ORIGINAL CODE STARTS HERE ---
     st.header("Hospital Management System", divider="blue")
 
     st.sidebar.title("Navigation")
 
-    # Added a logout button to your sidebar
     if st.sidebar.button("Logout"):
         logout()
 
