@@ -2,7 +2,7 @@
 
 Link to app: [[App Link](https://hospital-mgmt.streamlit.app)]
 
-This is a hospital management system I built using Python and Streamlit. It handles patient registration, vital signs, doctor reports, and nursing notes.
+A hospital management system built using Python and Streamlit. It handles patient registration, vital signs, doctor reports, and nursing notes.
 
 ## What it does
 * **Role-Based Navigation:** Staff can select their department (Reception, Doctor, Nurse) to access specific tools.
