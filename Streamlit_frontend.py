@@ -1,19 +1,13 @@
 import streamlit as st
 from datetime import date
-from Streamlit_backend import Reception, Doctor, Nurse
+from Streamlit_backend import Reception, Doctor, Nurse, AdminAuthentication
 
 st.set_page_config(page_title="MRT Hospital System", layout="centered")
 
+auth = AdminAuthentication()
+
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
-
-
-def login(username, password):
-    if username == "admin" and password == "password123":
-        st.session_state['logged_in'] = True
-        st.rerun()
-    else:
-        st.error("Wrong username or password")
 
 
 def logout():
@@ -23,14 +17,35 @@ def logout():
 
 if not st.session_state['logged_in']:
     st.header("MRT Hospital System", divider="blue")
-    st.subheader("Staff Login")
 
-    with st.form("login_form"):
-        user = st.text_input("Username")
-        pw = st.text_input("Password", type="password")
+    if auth.first_time():
+        st.subheader("First Time Setup: Set Admin Password")
 
-        if st.form_submit_button("Login"):
-            login(user, pw)
+        with st.form("setup_form"):
+            new_pw = st.text_input("Create New Password", type="password")
+
+            if st.form_submit_button("Save Password"):
+
+                if new_pw:
+                    auth.set_password(new_pw)
+                    st.success("Password saved! Please log in.")
+                    st.rerun()
+                else:
+                    st.error("Password cannot be empty.")
+
+    else:
+        st.subheader("Staff Login")
+
+        with st.form("login_form"):
+            user = st.text_input("Username")
+            pw = st.text_input("Password", type="password")
+
+            if st.form_submit_button("Login"):
+                if user == "admin" and auth.verify_password(pw):
+                    st.session_state['logged_in'] = True
+                    st.rerun()
+                else:
+                    st.error("Wrong username or password")
 
 else:
     st.header("Hospital Management System", divider="blue")

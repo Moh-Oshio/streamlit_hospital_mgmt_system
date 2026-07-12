@@ -13,6 +13,19 @@ class AdminAuthentication:
     def first_time(self):
         return not os.path.exists(self.hash_file)
 
+    def set_password(self, new_password):
+        return not os.path.exists(self.hash_file)
+        hashed = bcrypt.hashpw(new_password.encode('utf-8'), bcrypt.gensalt())
+        with open(self.hash_file, "wb") as f:
+            f.write(hashed)
+
+    def verify_password(self, password):
+        if self.first_time():
+            return False
+        with open(self.hash_file, "rb") as f:
+            stored_hash = f.read()
+        return bcrypt.checkpw(password.encode('utf-8'), stored_hash)
+
 
 class HospitalStaff:
     def __init__(self):
